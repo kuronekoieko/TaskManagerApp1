@@ -1,6 +1,37 @@
 # encoding: utf-8
 
 class TaskController < ApplicationController
+  @@name_hush = {
+    "status" => "ステータス",
+    "priority" => "優先度",
+    "pic" => "担当者",
+    "classification" => "分類",
+  }
+
+  def get_all_records(table_name)
+    records_hush = {
+      "status" => Status.all,
+      "priority" => Priority.all,
+      "pic" => Pic.all,
+      "classification" => Classification.all,
+    }
+    return records_hush[table_name]
+  end
+
+  def get_new_instance(table_name, record_name)
+    case table_name
+    when "status"
+      record = Status.new(name: record_name)
+    when "priority"
+      record = Priority.new(name: record_name)
+    when "pic"
+      record = Pic.new(name: record_name)
+    when "classification"
+      record = Classification.new(name: record_name)
+    end
+    return record
+  end
+
   def top
   end
 
@@ -10,23 +41,8 @@ class TaskController < ApplicationController
 
   def setting
     @table_name = params[:table_name]
-    case @table_name
-    when "status"
-      @records = Status.all
-      @name = "ステータス"
-    when "priority"
-      @records = Priority.all
-      @name = "優先度"
-    when "pic"
-      @records = Pic.all
-      @name = "担当者"
-    when "classification"
-      @records = Classification.all
-      @name = "分類"
-    else
-      @records = Status.all
-      @name = "ステータス"
-    end
+    @name = @@name_hush[@table_name]
+    @records = get_all_records(@table_name)
   end
 
   def show
@@ -52,41 +68,19 @@ class TaskController < ApplicationController
 
   def create_record
     @table_name = params[:table_name]
-    case @table_name
-    when "status"
-      @record = Status.new(name: params[:status_name])
-    when "priority"
-      @record = Priority.new(name: params[:status_name])
-    when "pic"
-      @record = Pic.new(name: params[:status_name])
-    when "classification"
-      @record = Classification.new(name: params[:status_name])
-    else
-    end
+    @record = get_new_instance(@table_name, params[:record_name])
     @record.save
     redirect_to("/task/setting/#{@table_name}")
   end
 
   def delete_record
     @table_name = params[:table_name]
-
-    case @table_name
-    when "status"
-      @records = Status.all
-    when "priority"
-      @records = Priority.all
-    when "pic"
-      @records = Pic.all
-    when "classification"
-      @records = Classification.all
-    else
-    end
+    @records = get_all_records(@table_name)
 
     params[:deletelist].each do |di1, di2|
       puts di2
       if di2 == "1"
-        @record = @records.find_by(id: di1)
-        @record.delete
+        @records.find_by(id: di1).delete
       end
     end
     redirect_to("/task/setting/#{@table_name}")
