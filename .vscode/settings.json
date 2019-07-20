@@ -1,3 +1,4 @@
 {
-    "ruby.format": "rufo"
+    "ruby.format": "rufo",
+    "git.ignoreLimitWarning": true
 }
