@@ -68,14 +68,27 @@ class TaskController < ApplicationController
   end
 
   def delete_record
-    puts @table_name
+    @table_name = params[:table_name]
+
+    case @table_name
+    when "status"
+      @records = Status.all
+    when "priority"
+      @records = Priority.all
+    when "pic"
+      @records = Pic.all
+    when "classification"
+      @records = Classification.all
+    else
+    end
+
     params[:deletelist].each do |di1, di2|
       puts di2
       if di2 == "1"
-        @status = Status.find_by(id: di1)
-        @status.delete
+        @record = @records.find_by(id: di1)
+        @record.delete
       end
     end
-    redirect_to("/task/setting/status")
+    redirect_to("/task/setting/#{@table_name}")
   end
 end
