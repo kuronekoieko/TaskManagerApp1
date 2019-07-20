@@ -4,10 +4,10 @@ class TaskController < ApplicationController
 
   def index
     @tasks = Task.all
-    @statuses = Status.all
   end
 
   def setting
+    @statuses = Status.all
   end
 
   def show
@@ -21,13 +21,19 @@ class TaskController < ApplicationController
     # @tasks.each do |task|
     # task.status_id=1
     # end
-    @tasks.save
+    # @tasks.save
 
     redirect_to("/task/index")
   end
 
   def reset
     Task.find(1).destroy
-    redirect_to("/home/top")
+    redirect_to("/task/top")
+  end
+
+  def create_status
+    @status = Status.new(name: params[:status_name])
+    @status.save
+    redirect_to("/task/setting")
   end
 end

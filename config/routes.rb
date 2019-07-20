@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   post "task/create" => "task#create"
   post "task/reset" => "task#reset"
+  post "task/create_status" => "task#create_status"
 end
