@@ -64,6 +64,7 @@ class TaskController < ApplicationController
     @table_name = params[:table_name]
     @record = get_new_instance(@table_name, params[:record_name])
     @record.save
+
     redirect_to("/task/setting/#{@table_name}")
   end
 
