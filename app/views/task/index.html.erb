@@ -1,2 +1,28 @@
-<h1>Task#top</h1>
-<p>Find me in app/views/task/top.html.erb</p>
+<h2>タスク一覧画面です</h2>
+
+<%= link_to("トップ画面へ","/task/top")%>
+<br>
+<%= link_to("設定画面へ","/task/setting") %>
+
+<%= form_tag("/task/create") do%>
+<p>新規タスク</p>
+<input type="text" name="task_name">
+<input type="submit" value="作成">
+<% end %>
+<%= link_to("全削除","/task/reset",method:"post")%>
+
+<table>
+    <tr>
+        <td>ステータス</td>
+        <td>タスク</td>
+        <% @tasks.each do |task|%>
+    <tr>
+        <td>
+            <%status= Status.find_by(id:task.status_id)%>
+            <%= task.status_id%>
+            未着手
+        </td>
+        <td><%= task.name %></td>
+    </tr>
+    <%end%>
+</table>
