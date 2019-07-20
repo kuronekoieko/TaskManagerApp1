@@ -1,32 +1,39 @@
 # encoding: utf-8
 
 class TaskController < ApplicationController
+  @@table_names = [
+    "status",
+    "priority",
+    "pic",
+    "classification",
+  ]
+
   @@name_hush = {
-    "status" => "ステータス",
-    "priority" => "優先度",
-    "pic" => "担当者",
-    "classification" => "分類",
+    @@table_names[0] => "ステータス",
+    @@table_names[1] => "優先度",
+    @@table_names[2] => "担当者",
+    @@table_names[3] => "分類",
   }
 
   def get_all_records(table_name)
     records_hush = {
-      "status" => Status.all,
-      "priority" => Priority.all,
-      "pic" => Pic.all,
-      "classification" => Classification.all,
+      @@table_names[0] => Status.all,
+      @@table_names[1] => Priority.all,
+      @@table_names[2] => Pic.all,
+      @@table_names[3] => Classification.all,
     }
     return records_hush[table_name]
   end
 
   def get_new_instance(table_name, record_name)
     case table_name
-    when "status"
+    when @@table_names[0]
       record = Status.new(name: record_name)
-    when "priority"
+    when @@table_names[1]
       record = Priority.new(name: record_name)
-    when "pic"
+    when @@table_names[2]
       record = Pic.new(name: record_name)
-    when "classification"
+    when @@table_names[3]
       record = Classification.new(name: record_name)
     end
     return record
@@ -46,19 +53,6 @@ class TaskController < ApplicationController
   end
 
   def show
-  end
-
-  def create
-    @task = Task.new(name: params[:task_name], status_id: 1)
-    @task.save
-
-    # @tasks = Task.all
-    # @tasks.each do |task|
-    # task.status_id=1
-    # end
-    # @tasks.save
-
-    redirect_to("/task/index")
   end
 
   def reset
@@ -84,5 +78,18 @@ class TaskController < ApplicationController
       end
     end
     redirect_to("/task/setting/#{@table_name}")
+  end
+
+  def create
+    @task = Task.new(name: params[:task_name], status_id: 1)
+    @task.save
+
+    # @tasks = Task.all
+    # @tasks.each do |task|
+    # task.status_id=1
+    # end
+    # @tasks.save
+
+    redirect_to("/task/index")
   end
 end
