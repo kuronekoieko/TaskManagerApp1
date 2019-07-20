@@ -36,4 +36,15 @@ class TaskController < ApplicationController
     @status.save
     redirect_to("/task/setting")
   end
+
+  def delete_status
+    params[:deletelist].each do |di1, di2|
+      puts di2
+      if di2 == "1"
+        @status = Status.find_by(id: di1)
+        @status.delete
+      end
+    end
+    redirect_to("/task/setting")
+  end
 end

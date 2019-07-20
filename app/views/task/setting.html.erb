@@ -8,12 +8,19 @@
 <input type="submit" value="作成">
 <% end %>
 
+<%= form_tag("/task/delete_status") do %>
 <table>
     <tr>
+        <td>選択</td>
+        <td>ID</td>
         <td>ステータス名</td>
         <% @statuses.each do |status|%>
     <tr>
+        <td><%= check_box "deletelist", status.id %></td>
+        <td><%= status.id %></td>
         <td><%= status.name %></td>
     </tr>
     <%end%>
 </table>
+<input type="submit" value="削除">
+<% end %>
