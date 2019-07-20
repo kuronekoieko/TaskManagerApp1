@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class TaskController < ApplicationController
   def top
   end
@@ -8,22 +9,23 @@ class TaskController < ApplicationController
   end
 
   def setting
-    case params[:table_name]
+    @table_name = params[:table_name]
+    case @table_name
     when "status"
       @records = Status.all
-      @table_name = "ステータス"
+      @name = "ステータス"
     when "priority"
       @records = Priority.all
-      @table_name = "優先度"
+      @name = "優先度"
     when "pic"
       @records = Pic.all
-      @table_name = "担当者"
+      @name = "担当者"
     when "classification"
       @records = Classification.all
-      @table_name = "分類"
+      @name = "分類"
     else
       @records = Status.all
-      @table_name = "ステータス"
+      @name = "ステータス"
     end
   end
 
@@ -49,12 +51,24 @@ class TaskController < ApplicationController
   end
 
   def create_record
-    @status = Status.new(name: params[:status_name])
-    @status.save
-    redirect_to("/task/setting")
+    @table_name = params[:table_name]
+    case @table_name
+    when "status"
+      @record = Status.new(name: params[:status_name])
+    when "priority"
+      @record = Priority.new(name: params[:status_name])
+    when "pic"
+      @record = Pic.new(name: params[:status_name])
+    when "classification"
+      @record = Classification.new(name: params[:status_name])
+    else
+    end
+    @record.save
+    redirect_to("/task/setting/#{@table_name}")
   end
 
   def delete_record
+    puts @table_name
     params[:deletelist].each do |di1, di2|
       puts di2
       if di2 == "1"
@@ -62,6 +76,6 @@ class TaskController < ApplicationController
         @status.delete
       end
     end
-    redirect_to("/task/setting")
+    redirect_to("/task/setting/status")
   end
 end

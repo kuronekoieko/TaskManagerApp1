@@ -7,20 +7,21 @@
 <%= link_to("担当者設定","/task/setting/pic") %><br>
 <%= link_to("分類設定","/task/setting/classification") %><br>
 
-<%= form_tag("/task/create_record") do%>
+<%= form_tag("/task/create_record/#{@table_name}") do%>
 <br>
-<%=@table_name%>を追加
+<%=@name%>を追加
 <br>
 <input type="text" name="status_name">
 <input type="submit" value="作成">
 <% end %>
+
 <br>
-<%= form_tag("/task/delete_record") do %>
+<%= form_tag("/task/delete_record/status") do %>
 <table>
     <tr>
         <td>選択</td>
         <td>ID</td>
-        <td><%=@table_name%>名</td>
+        <td><%=@name%>名</td>
         <% @records.each do |record|%>
     <tr>
         <td><%= check_box "deletelist", record.id %></td>
