@@ -3,10 +3,7 @@
 class TaskController < ApplicationController
   def index
     @tasks = Task.all
-    @pics = Pic.all
-
     @pics_hush = {}
-
     for pic in Pic.all
       @pics_hush[pic.name] = pic.id
     end
