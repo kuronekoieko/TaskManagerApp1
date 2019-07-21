@@ -10,4 +10,14 @@ class TaskController < ApplicationController
     @task.save
     redirect_to("/task/index")
   end
+
+  def delete
+    params[:deletelist].each do |di1, di2|
+      puts di2
+      if di2 == "1"
+        Task.find_by(id: di1).delete
+      end
+    end
+    redirect_to("/task/index")
+  end
 end
