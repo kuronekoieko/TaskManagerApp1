@@ -12,6 +12,13 @@
 
   <body>
     <h1>タスク管理アプリです</h1>
+    <%= link_to("トップ画面へ","/task/top")%><br>
+    <%= link_to("タスク一覧へ","/task/index") %><br><br>
+    <%= link_to("ステータス設定","/setting/setting/status") %><br>
+    <%= link_to("優先度設定","/setting/setting/priority") %><br>
+    <%= link_to("担当者設定","/setting/setting/pic") %><br>
+    <%= link_to("分類設定","/setting/setting/classification") %><br>
+
     <%= yield %>
   </body>
 
