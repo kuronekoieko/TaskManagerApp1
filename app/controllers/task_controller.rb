@@ -3,10 +3,17 @@
 class TaskController < ApplicationController
   def index
     @tasks = Task.all
+    @pics = Pic.all
+
+    @pics_hush = {}
+
+    for pic in Pic.all
+      @pics_hush[pic.name] = pic.id
+    end
   end
 
   def create
-    @task = Task.new(name: params[:task_name], status_id: 1)
+    @task = Task.new(name: params[:task_name])
     @task.save
     redirect_to("/task/index")
   end
@@ -18,6 +25,13 @@ class TaskController < ApplicationController
         Task.find_by(id: di1).delete
       end
     end
+
+    redirect_to("/task/index")
+  end
+
+  def change
+    task = Task.find_by(id: params[:task_id])
+    task.update(pic_id: params[:pic_id])
     redirect_to("/task/index")
   end
 end
