@@ -5,10 +5,6 @@ class TaskController < ApplicationController
 
   def index
     @tasks = Task.all
-    @pics_hush = {}
-    for pic in Pic.all
-      @pics_hush[pic.name] = pic.id
-    end
     puts "いんでっくす"
   end
 
@@ -37,20 +33,5 @@ class TaskController < ApplicationController
     redirect_to("/task/index")
   end
 
-  def change
-    puts "ああああああああああああああああああああああああ"
-    task = Task.find_by(id: params[:task_id])
-    # task.update(pic_id: params[:pic_id])
-    task.pic_id = params[:pic_id]
-
-    if task.save
-      puts "保存成功！！！！！！！！"
-    else
-      puts "保存できない！！！！！！！！"
-    end
-
-    # puts task.name
-    # puts "ああああああああああああああああああああああああ"
-    redirect_to("/task/index")
-  end
+ 
 end

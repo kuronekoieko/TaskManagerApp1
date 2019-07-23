@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "task/show" => "task#show"
   post "task/create" => "task#create"
   post "task/delete" => "task#delete"
-  post "task/change/:task_id" => "task#change"
 
   get "show/show/:task_id" => "show#show"
+  post "show/change/:task_id" => "show#change"
 end

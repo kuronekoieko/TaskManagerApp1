@@ -1,3 +1,37 @@
 <h2>タスク詳細画面です</h2>
 
-<h3><%=@task.name%></h3>
+<h3><%="##{@task.id} #{@task.name}"%></h3>
+
+<%= form_tag("/show/change/#{@task.id}") do %>
+<table>
+    <tr>
+        <td>担当者</td>
+        <td>
+            <%= select_tag "pic_id", 
+            options_for_select(@pics_hush,:selected=>@task.pic_id) %>
+        </td>
+    </tr>
+    <tr>
+        <td>ステータス</td>
+        <td>
+            <%= select_tag "status_id", 
+            options_for_select(@statuses_hush,:selected=>@task.status_id) %>
+        </td>
+    </tr>
+    <tr>
+        <td>優先度</td>
+        <td>
+            <%= select_tag "priority_id", 
+            options_for_select(@priorities_hush,:selected=>@task.priority_id) %>
+        </td>
+    </tr>
+    <tr>
+        <td>分類</td>
+        <td>
+            <%= select_tag "classification_id", 
+            options_for_select(@classifications_hush,:selected=>@task.classification_id) %>
+        </td>
+    </tr>
+</table>
+<input type="submit" value="変更">
+<% end %>
