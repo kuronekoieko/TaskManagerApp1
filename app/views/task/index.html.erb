@@ -20,17 +20,15 @@
         <td>更新日</td>
         <% @tasks.each do |task|%>
     <tr>
-
         <td><%= check_box "deletelist", task.id %></td>
         <td><%= task.id %></td>
-        <td><%= task.name %></td>
+        <td> <%= link_to(task.name,"/show/show/#{task.id}") %><br></td>
         <td><%= task.pic_id %></td>
         <td><%= task.status_id %></td>
         <td><%= task.priority_id %></td>
         <td><%= task.classification_id %></td>
         <td><%=task.created_at%></td>
         <td><%=task.updated_at%></td>
-
     </tr>
     <%end%>
 </table>
