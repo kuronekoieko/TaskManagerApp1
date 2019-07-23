@@ -23,10 +23,10 @@
         <td><%= check_box "deletelist", task.id %></td>
         <td><%= task.id %></td>
         <td> <%= link_to(task.name,"/show/show/#{task.id}") %><br></td>
-        <td><%= task.pic_id %></td>
-        <td><%= task.status_id %></td>
-        <td><%= task.priority_id %></td>
-        <td><%= task.classification_id %></td>
+        <td><%= Pic.find_by(id: task.pic_id).name %></td>
+        <td><%= Status.find_by(id: task.status_id).name %></td>
+        <td><%= Priority.find_by(id: task.priority_id).name %></td>
+        <td><%= Classification.find_by(id: task.classification_id).name %></td>
         <td><%=task.created_at%></td>
         <td><%=task.updated_at%></td>
     </tr>
