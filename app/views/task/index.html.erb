@@ -6,8 +6,6 @@
 <input type="submit" value="作成">
 <% end %>
 
-<%= link_to("全削除","/task/reset",method:"post")%>
-
 <%= form_tag("/task/delete") do %>
 <table>
     <tr>
@@ -20,23 +18,19 @@
         <td>分類</td>
         <td>作成日</td>
         <td>更新日</td>
-        <td>適用</td>
         <% @tasks.each do |task|%>
     <tr>
-        <%= form_tag("/task/change/#{task.id}") do %>
+
         <td><%= check_box "deletelist", task.id %></td>
         <td><%= task.id %></td>
         <td><%= task.name %></td>
-        <td>
-            <%= select_tag "pic_id", options_for_select(@pics_hush,:selected=>6) %>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= task.pic_id %></td>
+        <td><%= task.status_id %></td>
+        <td><%= task.priority_id %></td>
+        <td><%= task.classification_id %></td>
         <td><%=task.created_at%></td>
         <td><%=task.updated_at%></td>
-        <td><input type="submit" value="変更"></td>
-        <%end%>
+
     </tr>
     <%end%>
 </table>
