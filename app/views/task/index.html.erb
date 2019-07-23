@@ -20,13 +20,18 @@
         <td>更新日</td>
         <% @tasks.each do |task|%>
     <tr>
+        <% pic= Pic.find_by(id: task.pic_id) %>
+        <% status=Status.find_by(id: task.status_id) %>
+        <% priority=Priority.find_by(id: task.priority_id) %>
+        <% classification=Classification.find_by(id: task.classification_id) %>
+
         <td><%= check_box "deletelist", task.id %></td>
         <td><%= task.id %></td>
-        <td> <%= link_to(task.name,"/show/show/#{task.id}") %><br></td>
-        <td><%= Pic.find_by(id: task.pic_id).name %></td>
-        <td><%= Status.find_by(id: task.status_id).name %></td>
-        <td><%= Priority.find_by(id: task.priority_id).name %></td>
-        <td><%= Classification.find_by(id: task.classification_id).name %></td>
+        <td><%= link_to(task.name,"/show/show/#{task.id}") %><br></td>
+        <td><%= if pic then pic.name end %></td>
+        <td><%= if status then status.name end %></td>
+        <td><%= if priority then priority.name end %></td>
+        <td><%= if classification then classification.name end %></td>
         <td><%=task.created_at%></td>
         <td><%=task.updated_at%></td>
     </tr>
