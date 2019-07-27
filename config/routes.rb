@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :blogs
+  root "top#top" #トップページをblogsコントローラのindexアクションに設定
   get "top/top"
   get "show/show"
   get "setting/setting/:table_name" => "setting#setting"
