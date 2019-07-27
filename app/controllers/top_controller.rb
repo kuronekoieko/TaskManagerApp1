@@ -7,6 +7,11 @@ class TopController < ApplicationController
   end
 
   def create
+    @user = User.new(
+      name: params[:name],
+      password: params[:password],
+    )
+    @user.save
     redirect_to("/top/top")
   end
 end
