@@ -3,7 +3,17 @@ class TopController < ApplicationController
   end
 
   def login
-    redirect_to("/task/index")
+    @user_name = params[:name]
+    @user_pass = params[:password]
+    @user = User.find_by(
+      name: @user_name,
+      password: @user_pass,
+    )
+    if @user
+      redirect_to("/task/index")
+    else
+      redirect_to("/top/top")
+    end
   end
 
   def create

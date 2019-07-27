@@ -1,11 +1,12 @@
 <h2>トップ画面です</h2>
 
+
 <%= form_tag("/top/login") do%>
 ログイン<br><br>
 ユーザー名<br>
-<input type="text" name="task_name"><br>
+<input type="text" name="name" value="<%=@user_name%>"><br>
 パスワード<br>
-<input type="password" value=""><br>
+<input type="password" name="password" value="<%=@user_pass%>"><br>
 <input type="submit" value="ログイン"><br><br>
 <% end %>
 
