@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "top/top"
   get "show/show"
   get "setting/setting/:table_name" => "setting#setting"
   post "setting/create_record/:table_name" => "setting#create_record"
@@ -12,4 +13,8 @@ Rails.application.routes.draw do
 
   get "show/show/:task_id" => "show#show"
   post "show/change/:task_id" => "show#change"
+
+  get "top/top" => "top#top"
+  post "top/login" => "top#login"
+  post "top/create" => "top#create"
 end
