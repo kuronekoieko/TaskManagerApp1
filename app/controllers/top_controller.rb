@@ -12,7 +12,7 @@ class TopController < ApplicationController
     if @user
       redirect_to("/task/index")
     else
-      redirect_to("/top/top")
+      render("top/top")
     end
   end
 
