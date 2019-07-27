@@ -2,27 +2,21 @@
 class ShowController < ApplicationController
   protect_from_forgery
 
+  def get_hush(instances)
+    hush = {}
+    hush["未選択"] = 0
+    for instance in instances
+      hush[instance.name] = instance.id
+    end
+    return hush
+  end
+
   def show
     @task = Task.find_by(id: params[:task_id])
-    @pics_hush = {}
-    for pic in Pic.all
-      @pics_hush[pic.name] = pic.id
-    end
-
-    @statuses_hush = {}
-    for status in Status.all
-      @statuses_hush[status.name] = status.id
-    end
-
-    @priorities_hush = {}
-    for priority in Priority.all
-      @priorities_hush[priority.name] = priority.id
-    end
-
-    @classifications_hush = {}
-    for classification in Classification.all
-      @classifications_hush[classification.name] = classification.id
-    end
+    @pics_hush = get_hush(Pic.all)
+    @statuses_hush = get_hush(Status.all)
+    @priorities_hush = get_hush(Priority.all)
+    @classifications_hush = get_hush(Classification.all)
   end
 
   def change
