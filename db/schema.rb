@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_27_075516) do
+ActiveRecord::Schema.define(version: 2019_07_27_104235) do
 
   create_table "classifications", force: :cascade do |t|
     t.text "name"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2019_07_27_075516) do
     t.integer "priority_id"
     t.integer "classification_id"
     t.text "comment"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "password"
   end
 
 end
