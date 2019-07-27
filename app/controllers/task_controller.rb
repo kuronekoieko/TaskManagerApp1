@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class TaskController < ApplicationController
+  before_action :forbid_login_user
   protect_from_forgery
 
   def index

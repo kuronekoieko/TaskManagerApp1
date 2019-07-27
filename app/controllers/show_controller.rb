@@ -1,5 +1,6 @@
 # encoding: utf-8
 class ShowController < ApplicationController
+  before_action :forbid_login_user
   protect_from_forgery
 
   def get_hush(instances)

@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class SettingController < ApplicationController
+  before_action :forbid_login_user
+
   @@table_names = [
     "status",
     "priority",
