@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get "top/top" => "top#top"
   post "top/login" => "top#login"
   post "top/create" => "top#create"
+
+  post "logout" => "application#logout"
 end

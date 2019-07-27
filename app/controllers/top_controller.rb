@@ -9,6 +9,7 @@ class TopController < ApplicationController
       name: @user_name,
       password: @user_pass,
     )
+    session[:user_name] = @user_name
     if @user
       redirect_to("/task/index")
     else
