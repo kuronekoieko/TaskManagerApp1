@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_102125) do
+ActiveRecord::Schema.define(version: 2019_07_27_075516) do
 
   create_table "classifications", force: :cascade do |t|
     t.text "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_07_21_102125) do
     t.integer "status_id"
     t.integer "priority_id"
     t.integer "classification_id"
+    t.text "comment"
   end
 
 end

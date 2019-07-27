@@ -18,6 +18,7 @@
         <td>分類</td>
         <td>作成日</td>
         <td>更新日</td>
+        <td>コメント</td>
         <% @tasks.each do |task|%>
     <tr>
         <% pic= Pic.find_by(id: task.pic_id) %>
@@ -34,6 +35,7 @@
         <td><%= if classification then classification.name end %></td>
         <td><%=task.created_at%></td>
         <td><%=task.updated_at%></td>
+        <td><%=task.comment%></td>
     </tr>
     <%end%>
 </table>

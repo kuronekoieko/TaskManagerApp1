@@ -26,6 +26,7 @@ class ShowController < ApplicationController
       status_id: params[:status_id],
       priority_id: params[:priority_id],
       classification_id: params[:classification_id],
+      comment: params[:comment],
     )
     redirect_to("/show/show/#{task.id}")
   end
