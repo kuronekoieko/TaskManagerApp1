@@ -29,13 +29,13 @@
         <td><%= check_box "deletelist", task.id %></td>
         <td><%= task.id %></td>
         <td><%= link_to(task.name,"/show/show/#{task.id}") %><br></td>
-        <td><%= if pic then pic.name end %></td>
-        <td><%= if status then status.name end %></td>
-        <td><%= if priority then priority.name end %></td>
-        <td><%= if classification then classification.name end %></td>
-        <td><%=task.created_at.strftime('%Y/%m/%d')%></td>
-        <td><%=task.updated_at.strftime('%Y/%m/%d')%></td>
-        <td><%=task.comment%></td>
+        <td><%= pic.name if pic %></td>
+        <td><%= status.name if status %></td>
+        <td><%= priority.name if priority %></td>
+        <td><%= classification.name if classification %></td>
+        <td><%= task.created_at.strftime('%Y/%m/%d')%></td>
+        <td><%= task.updated_at.strftime('%Y/%m/%d')%></td>
+        <td><%= task.comment%></td>
     </tr>
     <%end%>
 </table>
