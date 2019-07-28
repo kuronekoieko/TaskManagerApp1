@@ -24,7 +24,7 @@ class SettingController < ApplicationController
       @@table_names[2] => Pic.all,
       @@table_names[3] => Classification.all,
     }
-    return records_hush[table_name]
+    records_hush[table_name] #returnと同じ
   end
 
   def get_new_instance(table_name, record_name)
@@ -38,7 +38,7 @@ class SettingController < ApplicationController
     when @@table_names[3]
       record = Classification.new(name: record_name)
     end
-    return record
+    record #returnと同じ
   end
 
   def setting

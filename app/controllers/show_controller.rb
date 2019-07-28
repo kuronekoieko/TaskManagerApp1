@@ -9,7 +9,7 @@ class ShowController < ApplicationController
     for instance in instances
       hush[instance.name] = instance.id
     end
-    return hush
+    hush #returnと同じ
   end
 
   def show
