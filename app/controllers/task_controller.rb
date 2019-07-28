@@ -18,10 +18,7 @@ class TaskController < ApplicationController
 
   def delete
     params[:deletelist].each do |di1, di2|
-      puts di2
-      if di2 == "1"
-        Task.find_by(id: di1).delete
-      end
+      Task.find_by(id: di1).delete if di2 == "1"
     end
     redirect_to("/task/index")
   end
