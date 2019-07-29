@@ -3,12 +3,12 @@
 class SettingController < ApplicationController
   before_action :forbid_login_user
 
-  @@table_names = [
-    "status",
-    "priority",
-    "pic",
-    "classification",
-  ]
+  @@table_names = %w(
+    status 
+    priority 
+    pic 
+    classification
+  )
 
   @@name_hush = {
     @@table_names[0] => "ステータス",
