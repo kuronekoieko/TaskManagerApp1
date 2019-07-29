@@ -6,7 +6,7 @@ class ShowController < ApplicationController
   def get_hush(instances)
     hush = {}
     hush["未選択"] = 0
-    for instance in instances
+    instances.each do |instance|
       hush[instance.name] = instance.id
     end
     hush #returnと同じ
